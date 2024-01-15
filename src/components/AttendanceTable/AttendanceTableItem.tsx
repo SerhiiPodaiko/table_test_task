@@ -14,13 +14,16 @@ const AttendanceTableItem = ({ schoolboy, index }: AttendanceTableItemProps) => 
     const dispatch = useAppDispatch()
     const { columns, rates } = useAppSelector(state => state.attendance)
 
+
+    console.log('rates', rates)
+
     const calculateIsAbsent = (schoolboyId: number, columnId: number): boolean => {
-        const rate = rates.find(r => r.SchoolboyId === schoolboyId && r.ColumnId === columnId)
+        const rate = rates.find((r: any) => r.SchoolboyId === schoolboyId && r.ColumnId === columnId)
         return rate ? rate.Title === 'H' : false
     }
 
     const setRate = (schoolboyId: number, columnId: number) => {
-        dispatch(setRateAction({ColumnId: undefined, SchoolboyId: undefined, Title: undefined, schoolboyId, columnId }))
+        dispatch(setRateAction({ schoolboyId, columnId }))
     }
 
     const unsetRate = (schoolboyId: number, columnId: number) => {
@@ -33,7 +36,7 @@ const AttendanceTableItem = ({ schoolboy, index }: AttendanceTableItemProps) => 
                 {`${schoolboy.FirstName || ''} ${schoolboy.SecondName || ''}`} <br/>
                 {`${schoolboy.LastName || ''}`}
             </TableCell>
-            {columns?.map(column => {
+            {columns?.map((column) => {
                 const isAbsent = calculateIsAbsent(schoolboy.Id, column.Id)
 
                 return (
@@ -41,7 +44,7 @@ const AttendanceTableItem = ({ schoolboy, index }: AttendanceTableItemProps) => 
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                             {
                                 isAbsent && (
-                                    <Typography sx={{ backgroundColor: '#9071C2', textAlign: 'center', color: 'white', padding: '5px', borderRadius: '8px' }}>
+                                    <Typography sx={{ backgroundColor: '#FF2400', textAlign: 'center', color: 'white', padding: '5px', borderRadius: '8px' }}>
                                         Пропуск
                                     </Typography>
                                 )

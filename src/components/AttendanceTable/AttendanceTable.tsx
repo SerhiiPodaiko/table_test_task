@@ -5,8 +5,7 @@ import { toast } from 'react-toastify'
 import LoadingUI from '@/ui/Loading/LoadingUI'
 import AttendanceTableItem from '@/components/AttendanceTable/AttendanceTableItem'
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
-import { fetchData} from '@/store/slices/attendanceSlice'
-import { Column } from '@/models/global-models'
+import { fetchData } from '@/store/slices/attendanceSlice'
 
 const AttendanceTable = () => {
     const dispatch = useAppDispatch()
@@ -30,7 +29,7 @@ const AttendanceTable = () => {
                 <TableHead sx={{ backgroundColor: '#1976D2' }}>
                     <TableRow>
                         <TableCell sx={{ color: 'white' }}>Учень</TableCell>
-                        {columns?.map(column => (
+                        {columns?.map((column: any) => (
                             <TableCell key={column.Id} sx={{ color: 'white', textAlign: 'center', borderLeft: '1px solid white' }}>
                                 {column.Title}
                             </TableCell>
@@ -38,7 +37,7 @@ const AttendanceTable = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    { schoolboys?.map((schoolboy, index: number) => (
+                    { schoolboys?.map((schoolboy: any, index: number) => (
                             <AttendanceTableItem schoolboy={schoolboy} index={index} key={schoolboy.Id}  />
                         ))}
                 </TableBody>

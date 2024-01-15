@@ -7,3 +7,6 @@
 
 #### Step 2
 `npm dev`
+
+### UI
+![Responsive Desktop website](public/site-desktop.png)
